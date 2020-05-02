@@ -16,6 +16,29 @@ class Arr {
     get(index){
         return this.data[index];
     }
+
+    // delete
+    delete(index){
+        // save data of specific index
+        const item = this.data[index]
+        // shift items method, pass index
+        this.shiftItems(index);
+        // return the item
+        return item;
+    }
+
+    // method to shift items
+    shiftItems(index){
+        // check for items in data starting from specific index
+        for (let i = index; i < this.length; i++){
+            // as it iterates over an item it becomes item next to it
+            this.data[i] = this.data[i + 1]
+        }
+        // last item is deleted
+        delete this.data[this.length - 1]
+        // decrease length
+        this.length--;
+    }
 }
 
 const newArr = new Arr();
@@ -25,6 +48,14 @@ newArr.push("c");
 newArr.push("d");
 newArr.push("e");
 
+// sanity check
+console.log("**************Before Deleting item at index 2");
 console.log(newArr);
 console.log(newArr.get(2));
+
+console.log("**************After Deleting item at index 2");
+newArr.delete(2);
+console.log(newArr.get(2));
+console.log(newArr);
+
 
